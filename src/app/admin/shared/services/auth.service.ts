@@ -8,15 +8,15 @@ import {catchError, tap} from 'rxjs/operators';
 @Injectable()
 export class AuthService {
 
-  public error$: Subject<string> = new Subject<string>()
+  public error$: Subject<string> = new Subject<string>();
 
   constructor(private http: HttpClient) {}
 
   get token(): string {
-    const expDate = new Date(localStorage.getItem('fb-token-exp'))
+    const expDate = new Date(localStorage.getItem('fb-token-exp'));
     if (new Date() > expDate) {
-      this.logout()
-      return null
+      this.logout();
+      return null;
     }
     return localStorage.getItem('fb-token')
   }
